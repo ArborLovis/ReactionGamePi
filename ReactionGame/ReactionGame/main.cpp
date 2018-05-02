@@ -255,6 +255,8 @@ int main(void)
 	//Ende
 	// Hier steht jetzt ein Kommentar!
 
+	// Michis Command 1.0
+
 	test::play_with_leds(led_player_1, led_player_2, led_status);
 
 
