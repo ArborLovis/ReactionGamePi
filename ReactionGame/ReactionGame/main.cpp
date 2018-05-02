@@ -253,6 +253,8 @@ int main(void)
 	std::cout << p1.get_username() << " has won " << p1.get_won_rounds() << " rounds."<< std::endl;
 	std::cout << p2.get_username() << " has won " << p2.get_won_rounds() << " rounds." << std::endl;
 
+	// Michis Command 1.0
+
 	test::play_with_leds(led_player_1, led_player_2, led_status);
 
 	return 0;
