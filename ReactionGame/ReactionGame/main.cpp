@@ -79,6 +79,7 @@ int main()
 	auto act_time = std::chrono::duration_cast<std::chrono::microseconds>(sys_now).count();
 	
 	constexpr long three_second = 3000000;		// for microsecond calc time
+	short winner_announced = 0;
 
 	//start the reaction game
 	//
@@ -125,15 +126,15 @@ int main()
 						p1.set_won_rounds_plus_one();
 						//the_game.show_winner(p1,led_player_1);
 					}
-					else if (the_game.get_statusled_time() < time_last_hit_p2)
+					else if (the_game.get_statusled_time() < time_last_hit_p2) //player 2 also reacts correct
 					{
-						if (time_last_hit_p1 < time_last_hit_p2)
+						if (time_last_hit_p1 < time_last_hit_p2)	//player 1 wins, because of faster reaction
 						{
 							the_game.set_player_led(led_player_1);
 							p1.set_won_rounds_plus_one();
 							//the_game.show_winner(p1, led_player_1);
 						}
-						else
+						else										//player 2 wins, because of faster reaction
 						{
 							the_game.set_player_led(led_player_2);
 							p2.set_won_rounds_plus_one();
@@ -141,44 +142,75 @@ int main()
 						}
 					}
 				}
-				else if (the_game.get_statusled_time() < time_last_hit_p2)
+				else if (the_game.get_statusled_time() < time_last_hit_p2)	// player 2 pressed btn after 3 seconds, player 1 did not
 				{
 					the_game.set_player_led(led_player_2);
 					p2.set_won_rounds_plus_one();
 					//the_game.show_winner(p2, led_player_2);
 				}
 
-				// get the false start winner
-				else		
+				else		// get the false start winner		
 				{
-					if (btn_hit_p2 && btn_hit_p1)
+					//std::cout << std::endl << "Someone started false!" << std::endl;
+
+					if (btn_hit_p2 && btn_hit_p1)	//both started false
 					{
-						if (time_last_hit_p1 < time_last_hit_p2)
+						if (time_last_hit_p1 < time_last_hit_p2)	//player 1 started false earlier
 						{
 							the_game.set_player_led(led_player_2);
 							p2.set_won_rounds_plus_one();
 							//the_game.show_winner(p2, led_player_2);
 						}
-						else
+						else	//player 2 started false earlier
 						{
 							the_game.set_player_led(led_player_1);
 							p1.set_won_rounds_plus_one();
 							//the_game.show_winner(p1, led_player_1);
 						}
 					}
-					else if (btn_hit_p1)
+					else if (btn_hit_p1)	//only player 1 did a false start
 					{
 						the_game.set_player_led(led_player_2);
 						p2.set_won_rounds_plus_one();
 						//the_game.show_winner(p2, led_player_2);
 					}
-					else
+					else	//only player 2 did a false start
 					{
 						the_game.set_player_led(led_player_1);
 						p1.set_won_rounds_plus_one();
 						//the_game.show_winner(p1, led_player_1);
 					}
 				}
+			}
+		}
+
+		if ((the_game.get_allready_played_rounds() > (the_game.get_rounds() / 2))  && (winner_announced == false))
+		{
+			if (p1.get_won_rounds() >= (the_game.get_rounds() / 2 + 1))
+			{
+				std::cout << std::endl << "Congratulation " << p1.get_username() << ", you have won more than 50% of the game!";
+				std::cout << std::endl;
+				while (the_game.get_rounds() != the_game.get_allready_played_rounds())
+				{
+					the_game.set_allready_played_rounds_plus_one();	//increase number rounds until game is over ( I think a better option is available)
+				}
+				winner_announced = 1;
+				the_game.set_active_round(FALSE);
+				the_game.set_round_time();
+				// the_game.set_allready_played_rounds(the_game.get_rounds);
+			}
+			else if (p2.get_won_rounds() >= (the_game.get_rounds() / 2 + 1))
+			{
+				std::cout << std::endl << "Congratulation " << p2.get_username() << ", you have won more than 50% of the game!";
+				std::cout << std::endl;
+				while (the_game.get_rounds() != the_game.get_allready_played_rounds())
+				{
+					the_game.set_allready_played_rounds_plus_one();	//increase number rounds until game is over ( I think a better option is available)
+				}
+				winner_announced = 1;
+				the_game.set_active_round(FALSE);
+				the_game.set_round_time();
+				//the_game.set_allready_played_rounds(the_game.get_rounds);
 			}
 		}
 
@@ -191,7 +223,9 @@ int main()
 			btn_hit_p2 = FALSE;
 
 			std::cout << "Next round started!" << std::endl;
-			the_game.set_active_round(TRUE);
+			if(the_game.get_rounds() != the_game.get_allready_played_rounds())
+				the_game.set_active_round(TRUE);
+			
 			the_game.set_round_time();
 			the_game.calc_status_time();
 
@@ -201,7 +235,8 @@ int main()
 			led_status.set_digital_output_false();
 		}
 
-		if(the_game.get_rounds() == the_game.get_allready_played_rounds())
+		//wait for 3 seconds, so last round winner can be seen
+		if((the_game.get_rounds() == the_game.get_allready_played_rounds()) && ((the_game.get_time_next_round() - act_time) < 0))
 		{
 			// turn all LEDs off
 			led_player_1.set_digital_output_false();
