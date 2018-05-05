@@ -5,10 +5,8 @@
 
 namespace test
 {
-	void play_with_leds(pi_io::digital_output_pi led_p1, pi_io::digital_output_pi led_p2, pi_io::digital_output_pi led_status)
+	void play_with_leds(pi_io::Digital_output_pi led_p1, pi_io::Digital_output_pi led_p2, pi_io::Digital_output_pi led_status)
 	{
-		
-
 		for(auto i = 0; i < 10; i ++)
 		{
 			led_p1.set_digital_output_true();

@@ -20,6 +20,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>ReactionGame_Files</Filter>
     </ClCompile>
+    <ClCompile Include="Files_Patrick_old\GameSetup.cpp">
+      <Filter>ReactionGame_Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO_Files">
@@ -56,6 +59,12 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>ReactionGame_Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Files_Patrick_old\GameSetup.h">
+      <Filter>ReactionGame_Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Files_Patrick_old\pi_gpio_headers.h">
+      <Filter>IO_Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

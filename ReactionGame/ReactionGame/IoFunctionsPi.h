@@ -4,7 +4,7 @@
 
 namespace pi_io
 {
-	class io_functions_pi
+	class Io_functions_pi
 	{
 		public:
 			static int map_pud(e_pull_up_down pud);

@@ -6,17 +6,17 @@
 
 namespace pi_game
 {
-	class reaction_game
+	class Reaction_game
 	{
 	public:
-		reaction_game();
+		Reaction_game(unsigned int const number_of_rounds);
 		unsigned int get_rounds() const;
 		void set_round_time();
 		void calc_status_time();
 		int64_t get_statusled_time() const;
 		int64_t get_round_time() const;
 
-		void set_player_led(pi_io::digital_output_pi led);
+		void set_player_led(pi_io::Digital_output_pi led);
 		void set_active_round(bool status);
 		bool get_active_round();
 
@@ -30,10 +30,7 @@ namespace pi_game
 		void set_over_all_active(bool status);
 		bool get_over_all_active();
 
-		void show_winner(player p, pi_io::digital_output_pi led);
-
-		
-
+		void show_winner(Player p, pi_io::Digital_output_pi led);
 
 	private:
 		unsigned int rounds_to_play_;

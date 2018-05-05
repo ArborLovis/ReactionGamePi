@@ -4,10 +4,10 @@
 namespace pi_game
 {
 	
-	class player
+	class Player
 	{
 		public:
-		player(std::string name);
+		Player(std::string name);
 		std::string get_username() const;
 
 		void set_won_rounds_plus_one();
