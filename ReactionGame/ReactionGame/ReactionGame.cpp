@@ -29,12 +29,15 @@ namespace pi_game
 		// init random seed
 		srand(time(nullptr));
 
+		//get randome time between 1 and 5 seconds
+		//
 		int64_t time_secret = rand() % five_milli_seconds;
 		time_secret = time_secret * one_thousand;
 
 		//std::cout << "Das ist die geheime Nummer: " << time_secret << std::endl;
 		
-
+		//add to random time 5 seconds to get the range 5 - 10 seconds
+		//
 		time_status_led_ = (time_round_starts_ + five_seconds + time_secret);
 
 		//std::cout << "Das ist die Rundenzahl: " << time_round_starts_ << std::endl;

@@ -66,6 +66,8 @@ int main()
 	// print countdown, if players are ready
 	reaction_setup.print_gamecountdown();
 
+	// reset game statistic
+	//
 	the_game.set_allready_played_rounds(0);
 	the_game.set_round_time();
 	the_game.calc_status_time();
@@ -78,16 +80,19 @@ int main()
 	
 	constexpr long three_second = 3000000;		// for microsecond calc time
 
+	//start the reaction game
+	//
 	while (the_game.get_over_all_active())
 	{
 		//get actual time - each duration
 		sys_now = std::chrono::system_clock::now().time_since_epoch();
 		act_time = std::chrono::duration_cast<std::chrono::microseconds>(sys_now).count();
 
-		if (the_game.get_active_round())
+		if (the_game.get_active_round())	
 		{
-			// set status led
-			if ((the_game.get_statusled_time() - act_time) < 0)
+			// --- TIMING RELEVANT --- // BEGIN
+			// turn on status led
+			if ((the_game.get_statusled_time() - act_time) < 0)	//turn on led between 5 - 10 seconds
 			{
 				led_status.set_digital_output_true();
 			}
@@ -101,18 +106,20 @@ int main()
 				//the_game.set_allready_played_rounds(the_game.get_rounds());
 				std::cout << "Game derminated! - Nobody reacted :'( " << std::endl;
 			}
+			// --- TIMING RELEVANT --- // END
 
+			// --- Look at hardware --- // 
 			//determine the winner !
 			if (btn_hit_p1 || btn_hit_p2)
 			{
-				//set game status to FALSE and calc the winner led runtime
+				//set game status to FALSE (=round ends) and calc the winner led runtime
 				the_game.set_active_round(FALSE);
 				the_game.set_time_next_round(act_time + three_second);
-				the_game.set_allready_played_rounds_plus_one();
+				the_game.set_allready_played_rounds_plus_one();				//maybe "inc_num_rounds_played": -> shorter
 
-				if (the_game.get_statusled_time() < time_last_hit_p1)
+				if (the_game.get_statusled_time() < time_last_hit_p1)	//btn pressed after 3 seconds?
 				{
-					if (btn_hit_p2 == false)
+					if (btn_hit_p2 == false)	//player 2 did not react, player 1 wins
 					{
 						the_game.set_player_led(led_player_1);						
 						p1.set_won_rounds_plus_one();
@@ -142,7 +149,7 @@ int main()
 				}
 
 				// get the false start winner
-				else
+				else		
 				{
 					if (btn_hit_p2 && btn_hit_p1)
 					{
@@ -232,7 +239,7 @@ void isr_button_player_1()
 	if (((int_time_btn - last_int_time_btn) > debounce_time) && (status_btn_p1))	//debounce button
 	{
 		//std::cout << std::endl << "Button 1 was pressed." << std::endl;
-		if (btn_hit_p1 == false)
+		if (btn_hit_p1 == false)	//not necessary? -> interrupt indicates change of button, so button was pressed
 		{
 			btn_hit_p1 = TRUE;
 			time_last_hit_p1 = int_time_btn;
