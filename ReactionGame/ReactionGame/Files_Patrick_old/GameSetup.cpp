@@ -103,7 +103,7 @@ unsigned int Game_setup::read_num_plays_CLI() const
 	return number_plays;
 }
 
-void Game_setup::print_gamecountdown() const
+void Game_setup::print_gamecountdown()
 {
 	constexpr short one_second = 1000;				// for millisecond delay
 

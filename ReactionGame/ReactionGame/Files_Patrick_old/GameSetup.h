@@ -15,7 +15,7 @@ public:
 	std::string read_usernames_CLI(); // MFA you should prefer one method that reads both player names
 	std::string get_username(short const first_sec) const;
 	unsigned int read_num_plays_CLI() const;
-	void print_gamecountdown() const;
+	static void print_gamecountdown();
 
 private:
 	std::string first_user_;

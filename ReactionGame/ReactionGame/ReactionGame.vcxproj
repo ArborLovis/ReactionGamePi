@@ -56,6 +56,7 @@
     <ClCompile Include="Files_Patrick_old\GameSetup.cpp" />
     <ClCompile Include="IoFunctionsPi.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manage_Io.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ReactionGame.cpp" />
     <ClCompile Include="TestFunctions.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="Files_Patrick_old\GameSetup.h" />
     <ClInclude Include="Files_Patrick_old\pi_gpio_headers.h" />
     <ClInclude Include="IoFunctionsPi.h" />
+    <ClInclude Include="Manage_Io.h" />
     <ClInclude Include="PinPi.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ReactionGame.h" />

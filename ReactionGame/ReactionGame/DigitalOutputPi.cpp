@@ -2,6 +2,7 @@
 #include <wiringPi.h>
 #include <iostream>
 #include "IoFunctionsPi.h"
+#include "Manage_Io.h"
 
 
 namespace pi_io
@@ -9,6 +10,13 @@ namespace pi_io
 	pi_io::Digital_output_pi::Digital_output_pi(e_pin pin, e_mode mode)
 	{
 		pin_numb_ = pin;
+
+		if (pi_io::Manage_io::get_io_status(pin))
+		{
+			std::cout << "Error Pin allready in use" << std::endl;
+		}
+		else
+			pi_io::Manage_io::set_io_input(pin);
 
 		pinMode(static_cast<int>(pin_numb_), pi_io::Io_functions_pi::map_mode(mode));
 		//std::cout << "All Outputsettings done! Pinnumber = " << static_cast<int> (pin_numb_) << std::endl;

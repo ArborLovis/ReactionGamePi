@@ -9,11 +9,12 @@
 #include "ReactionGame.h"
 #include "TestFunctions.h"
 #include "../ReactionGame/Files_Patrick_old/GameSetup.h"
+#include "Manage_Io.h"
 
 
 void isr_button_player_1();
 void isr_button_player_2();
-void spy_btn_status(pi_io::Digital_input_pi btn1, pi_io::Digital_input_pi btn2);
+void spy_btn_status(pi_io::Digital_input_pi btn_player_1, pi_io::Digital_input_pi btn_player_2);
 
 // Global variables for button Player1 and Player2
 bool btn_hit_p1;
@@ -35,6 +36,8 @@ int main()
 
 	// setup Input Button	
 	//
+	Manage_io pi_handler{};
+
 	const Digital_input_pi btn_player_1{ pi_io::e_pin::bcm_0, e_pull_up_down::up, pi_io::e_edge_type::falling, &isr_button_player_1 };
 	const Digital_input_pi btn_player_2{ pi_io::e_pin::bcm_1, pi_io::e_pull_up_down::up, pi_io::e_edge_type::falling, &isr_button_player_2 };
 
@@ -44,6 +47,7 @@ int main()
 	const Digital_output_pi led_player_2{ pi_io::e_pin::bcm_3, pi_io::e_mode::out };
 	const Digital_output_pi led_status{ pi_io::e_pin::bcm_4, pi_io::e_mode::out };
 
+	pi_io::Manage_io::get_overall_status();
 	// Game setup - read usernames and number of plays from the CLI
 	//
 	Game_setup reaction_setup;
@@ -63,8 +67,8 @@ int main()
 	led_player_2.set_digital_output_false();
 	led_status.set_digital_output_false();
 
-	// print countdown, if players are ready
-	reaction_setup.print_gamecountdown();
+	// print countdown, if players are ready	
+	Game_setup::print_gamecountdown();
 
 	// reset game statistic
 	//
@@ -120,7 +124,7 @@ int main()
 
 				if (the_game.get_statusled_time() < time_last_hit_p1)	//btn pressed after 3 seconds?
 				{
-					if (btn_hit_p2 == false)	//player 2 did not react, player 1 wins
+					if (!btn_hit_p2)	//player 2 did not react, player 1 wins
 					{
 						the_game.set_player_led(led_player_1);						
 						p1.set_won_rounds_plus_one();
@@ -184,39 +188,9 @@ int main()
 			}
 		}
 
-		if ((the_game.get_allready_played_rounds() > (the_game.get_rounds() / 2))  && (winner_announced == false))
-		{
-			if (p1.get_won_rounds() >= (the_game.get_rounds() / 2 + 1))
-			{
-				std::cout << std::endl << "Congratulation " << p1.get_username() << ", you have won more than 50% of the game!";
-				std::cout << std::endl;
-				while (the_game.get_rounds() != the_game.get_allready_played_rounds())
-				{
-					the_game.set_allready_played_rounds_plus_one();	//increase number rounds until game is over ( I think a better option is available)
-				}
-				winner_announced = 1;
-				the_game.set_active_round(FALSE);
-				the_game.set_round_time();
-				// the_game.set_allready_played_rounds(the_game.get_rounds);
-			}
-			else if (p2.get_won_rounds() >= (the_game.get_rounds() / 2 + 1))
-			{
-				std::cout << std::endl << "Congratulation " << p2.get_username() << ", you have won more than 50% of the game!";
-				std::cout << std::endl;
-				while (the_game.get_rounds() != the_game.get_allready_played_rounds())
-				{
-					the_game.set_allready_played_rounds_plus_one();	//increase number rounds until game is over ( I think a better option is available)
-				}
-				winner_announced = 1;
-				the_game.set_active_round(FALSE);
-				the_game.set_round_time();
-				//the_game.set_allready_played_rounds(the_game.get_rounds);
-			}
-		}
-
 		// show winner led for 3 seconds
 		// start next round
-		if ((the_game.get_active_round() == false) && ((the_game.get_time_next_round() - act_time) < 0))
+		if ((!the_game.get_active_round()) && ((the_game.get_time_next_round() - act_time) < 0))
 		{
 			//reset btn_hit's
 			btn_hit_p1 = FALSE;
@@ -236,7 +210,7 @@ int main()
 		}
 
 		//wait for 3 seconds, so last round winner can be seen
-		if((the_game.get_rounds() == the_game.get_allready_played_rounds()) && ((the_game.get_time_next_round() - act_time) < 0))
+		if((the_game.get_rounds() == the_game.get_allready_played_rounds()) && (the_game.get_time_next_round() - act_time) < 0)
 		{
 			// turn all LEDs off
 			led_player_1.set_digital_output_false();
@@ -250,12 +224,30 @@ int main()
 		spy_btn_status(btn_player_1, btn_player_2);		//Would be better in a timer isr all 10ms but didn't found anything in "www" how to do! ;-(
 		delay(20);
 	}
-
+	
 	//determine final score
 	//
+	
+	if (p1.get_won_rounds() >= (the_game.get_rounds() / 2 + 1))
+	{
+		std::cout << std::endl << "Congratulation " << p1.get_username() << ", you have won more than 50% of the game!";
+		std::cout << std::endl;
+		
+		test::winner_led_flashing(led_player_1);
+	}
+	else if (p2.get_won_rounds() >= (the_game.get_rounds() / 2 + 1))
+	{
+		std::cout << std::endl << "Congratulation " << p2.get_username() << ", you have won more than 50% of the game!";
+		std::cout << std::endl;
+
+		test::winner_led_flashing(led_player_2);
+	}
+	
 	std::cout << p1.get_username() << " has won " << p1.get_won_rounds() << " rounds."<< std::endl;
 	std::cout << p2.get_username() << " has won " << p2.get_won_rounds() << " rounds." << std::endl;
 
+	constexpr auto delay_before_quit = 2000;
+	delay(delay_before_quit);
 	test::play_with_leds(led_player_1, led_player_2, led_status);
 
 	return 0;
@@ -274,7 +266,7 @@ void isr_button_player_1()
 	if (((int_time_btn - last_int_time_btn) > debounce_time) && (status_btn_p1))	//debounce button
 	{
 		//std::cout << std::endl << "Button 1 was pressed." << std::endl;
-		if (btn_hit_p1 == false)	//not necessary? -> interrupt indicates change of button, so button was pressed
+		if (!btn_hit_p1)	//not necessary? -> interrupt indicates change of button, so button was pressed
 		{
 			btn_hit_p1 = TRUE;
 			time_last_hit_p1 = int_time_btn;
@@ -295,7 +287,7 @@ void isr_button_player_2()
 	if (((int_time_btn - last_int_time_btn) > debounce_time) && (status_btn_p2))
 	{
 		//std::cout << std::endl << "Button 2 was pressed." << std::endl;
-		if (btn_hit_p2 == false)
+		if (!btn_hit_p2)
 		{
 			btn_hit_p2 = TRUE;
 			time_last_hit_p2 = int_time_btn;
