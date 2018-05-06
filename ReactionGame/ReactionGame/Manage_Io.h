@@ -12,7 +12,7 @@ namespace pi_io
 		static void get_overall_status();
 
 	private:
-		static int io_list_[32];
+		static int io_list_[28];
 		//static int test;
 	};
 }

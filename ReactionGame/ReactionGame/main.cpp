@@ -38,16 +38,16 @@ int main()
 	//
 	Manage_io pi_handler{};
 
-	const Digital_input_pi btn_player_1{ pi_io::e_pin::bcm_0, e_pull_up_down::up, pi_io::e_edge_type::falling, &isr_button_player_1 };
-	const Digital_input_pi btn_player_2{ pi_io::e_pin::bcm_1, pi_io::e_pull_up_down::up, pi_io::e_edge_type::falling, &isr_button_player_2 };
+	const Digital_input_pi btn_player_1{ e_pin::bcm_0, e_pull_up_down::up, e_edge_type::falling, &isr_button_player_1 };
+	const Digital_input_pi btn_player_2{ e_pin::bcm_1, e_pull_up_down::up, e_edge_type::falling, &isr_button_player_2 };
 
 	// setup Output LED's
 	//
-	const Digital_output_pi led_player_1{ pi_io::e_pin::bcm_2, pi_io::e_mode::out };
-	const Digital_output_pi led_player_2{ pi_io::e_pin::bcm_3, pi_io::e_mode::out };
-	const Digital_output_pi led_status{ pi_io::e_pin::bcm_4, pi_io::e_mode::out };
+	const Digital_output_pi led_player_1{ e_pin::bcm_2, e_mode::out };
+	const Digital_output_pi led_player_2{ e_pin::bcm_3, e_mode::out };
+	const Digital_output_pi led_status{ e_pin::bcm_4, e_mode::out };
 
-	pi_io::Manage_io::get_overall_status();
+	//Manage_io::get_overall_status();
 	// Game setup - read usernames and number of plays from the CLI
 	//
 	Game_setup reaction_setup;

@@ -29,6 +29,37 @@ namespace pi_io
 			mode == e_mode::out ? OUTPUT :
 			PWM_OUTPUT;
 	}
+	int Io_functions_pi::map_pin(e_pin pin)
+	{
+		return pin == e_pin::bcm_0 ? 0 :
+			pin == e_pin::bcm_1 ? 1 :
+			pin == e_pin::bcm_2 ? 2 :
+			pin == e_pin::bcm_3 ? 3 :
+			pin == e_pin::bcm_4 ? 4 :
+			pin == e_pin::bcm_5 ? 5 :
+			pin == e_pin::bcm_6 ? 6 :
+			pin == e_pin::bcm_7 ? 7 :
+			pin == e_pin::bcm_8 ? 8 :
+			pin == e_pin::bcm_9 ? 9 :
+			pin == e_pin::bcm_10 ? 10 :
+			pin == e_pin::bcm_11 ? 11 :
+			pin == e_pin::bcm_12 ? 12 :
+			pin == e_pin::bcm_13 ? 13 :
+			pin == e_pin::bcm_14 ? 14 :
+			pin == e_pin::bcm_15 ? 15 :
+			pin == e_pin::bcm_16 ? 16 :
+			pin == e_pin::bcm_17 ? 17 :
+			pin == e_pin::bcm_18 ? 18 :
+			pin == e_pin::bcm_19 ? 19 :
+			pin == e_pin::bcm_20 ? 20 :
+			pin == e_pin::bcm_21 ? 21 :
+			pin == e_pin::bcm_22 ? 22 :
+			pin == e_pin::bcm_23 ? 23 :
+			pin == e_pin::bcm_24 ? 24 :
+			pin == e_pin::bcm_25 ? 25 :
+			pin == e_pin::bcm_26 ? 26 :
+			27;
+	}
 }
 
 
