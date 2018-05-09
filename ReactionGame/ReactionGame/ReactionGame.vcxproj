@@ -68,6 +68,7 @@
     <ClInclude Include="Files_Patrick_old\GameSetup.h" />
     <ClInclude Include="Files_Patrick_old\pi_gpio_headers.h" />
     <ClInclude Include="IoFunctionsPi.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="Manage_Io.h" />
     <ClInclude Include="PinPi.h" />
     <ClInclude Include="Player.h" />

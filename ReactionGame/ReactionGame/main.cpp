@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <chrono>		//for timing conditions
+#include <fstream>
 
 #include "DigitalInputPi.h"
 #include "PinPi.h"
@@ -10,6 +11,7 @@
 #include "TestFunctions.h"
 #include "../ReactionGame/Files_Patrick_old/GameSetup.h"
 #include "Manage_Io.h"
+#include "json.hpp"
 
 
 void isr_button_player_1();
@@ -37,6 +39,17 @@ int main()
 	// setup Input Button	
 	//
 	Manage_io pi_handler{};
+
+	// reading IO_pins from json file
+
+	std::ifstream in_pinout("pins.json");
+	nlohmann::json j_object;
+	in_pinout >> j_object;
+
+	std::cout << j_object;
+	auto intern_p1_led = j_object["p1_led"].get<std::string>();
+
+
 
 	const Digital_input_pi btn_player_1{ e_pin::bcm_0, e_pull_up_down::up, e_edge_type::falling, &isr_button_player_1 };
 	const Digital_input_pi btn_player_2{ e_pin::bcm_1, e_pull_up_down::up, e_edge_type::falling, &isr_button_player_2 };

@@ -72,5 +72,6 @@
     <ClInclude Include="Manage_Io.h">
       <Filter>IO_Files</Filter>
     </ClInclude>
+    <ClInclude Include="json.hpp" />
   </ItemGroup>
 </Project>
