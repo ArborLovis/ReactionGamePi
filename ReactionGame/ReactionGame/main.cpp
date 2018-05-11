@@ -18,6 +18,9 @@ void isr_button_player_1();
 void isr_button_player_2();
 void spy_btn_status(pi_io::Digital_input_pi btn_player_1, pi_io::Digital_input_pi btn_player_2);
 
+pi_io::e_pin map_pin_numbers(int pin_num);
+
+
 // Global variables for button Player1 and Player2
 bool btn_hit_p1;
 bool status_btn_p1;
@@ -42,23 +45,48 @@ int main()
 
 	// reading IO_pins from json file
 
-	std::ifstream in_pinout("pins.json");
+	std::ifstream in_pinout("pins.json", std::ifstream::binary);
 	nlohmann::json j_object;
-	in_pinout >> j_object;
+	std::stringstream iss;
 
-	std::cout << j_object;
-	auto intern_p1_led = j_object["p1_led"].get<std::string>();
+	iss << in_pinout.rdbuf();	//not sure about it, but i think it is just a safe way to read the input
+	in_pinout.close();			//I had trouble with reading the json file, so I play a little bit around
+	j_object << iss;
+
+	//
+	// PIN - Numbers of Player 1
+	//
+	auto p1_led_nr = j_object["p1_led"].get<int>();
+	auto p1_btn_nr = j_object["p1_button"].get<int>();
+	
+	//
+	// PIN - Numbers of Player 2
+	//
+	auto p2_led_nr = j_object["p2_led"].get<int>();
+	auto p2_btn_nr = j_object["p2_button"].get<int>();
+
+	//Shared Pins
+	auto state_nr = j_object["state"].get<int>();
+
+	//Debug purpose
+	
 
 
-
+	/*
 	const Digital_input_pi btn_player_1{ e_pin::bcm_0, e_pull_up_down::up, e_edge_type::falling, &isr_button_player_1 };
 	const Digital_input_pi btn_player_2{ e_pin::bcm_1, e_pull_up_down::up, e_edge_type::falling, &isr_button_player_2 };
-
-	// setup Output LED's
-	//
 	const Digital_output_pi led_player_1{ e_pin::bcm_2, e_mode::out };
 	const Digital_output_pi led_player_2{ e_pin::bcm_3, e_mode::out };
 	const Digital_output_pi led_status{ e_pin::bcm_4, e_mode::out };
+	*/
+	const Digital_input_pi btn_player_1{ map_pin_numbers(p1_btn_nr), e_pull_up_down::up, e_edge_type::falling, &isr_button_player_1 };
+	const Digital_input_pi btn_player_2{ map_pin_numbers(p2_btn_nr), e_pull_up_down::up, e_edge_type::falling, &isr_button_player_2 };
+	
+	// setup Output LED's
+	//
+	const Digital_output_pi led_player_1{ map_pin_numbers(p1_led_nr), e_mode::out };
+	const Digital_output_pi led_player_2{ map_pin_numbers(p2_led_nr), e_mode::out };
+	const Digital_output_pi led_status{ map_pin_numbers(state_nr), e_mode::out };
 
 	//Manage_io::get_overall_status();
 	// Game setup - read usernames and number of plays from the CLI
@@ -332,4 +360,98 @@ void spy_btn_status(pi_io::Digital_input_pi btn_player_1, pi_io::Digital_input_p
 	status_last_btn_p2 = act_status_btn2;
 }
 
-
+ pi_io::e_pin map_pin_numbers(int pin_num)
+{
+	switch (pin_num)
+	{
+	case 0:
+		return pi_io::e_pin::bcm_17;
+		break;
+	case 1:
+		return pi_io::e_pin::bcm_18;
+		break;
+	case 2:
+		return pi_io::e_pin::bcm_27;
+		break;
+	case 3:
+		return pi_io::e_pin::bcm_22;
+		break;
+	case 4:
+		return pi_io::e_pin::bcm_23;
+		break;
+	case 5:
+		return pi_io::e_pin::bcm_24;
+		break;
+	case 6:
+		return pi_io::e_pin::bcm_25;
+		break;
+	case 7:
+		return pi_io::e_pin::bcm_4;
+		break;
+	case 8:
+		return pi_io::e_pin::bcm_2;
+		break;
+	case 9:
+		return pi_io::e_pin::bcm_3;
+		break;
+	case 10:
+		return pi_io::e_pin::bcm_8;
+		break;
+	case 11:
+		return pi_io::e_pin::bcm_7;
+		break;
+	case 12:
+		return pi_io::e_pin::bcm_10;
+		break;
+	case 13:
+		return pi_io::e_pin::bcm_9;
+		break;
+	case 14:
+		return pi_io::e_pin::bcm_11;
+		break;
+	case 15:
+		return pi_io::e_pin::bcm_14;
+		break;
+	case 16:
+		return pi_io::e_pin::bcm_15;
+		break;
+	case 21:
+		return pi_io::e_pin::bcm_5;
+		break;
+	case 22:
+		return pi_io::e_pin::bcm_6;
+		break;
+	case 23:
+		return pi_io::e_pin::bcm_13;
+		break;
+	case 24:
+		return pi_io::e_pin::bcm_19;
+		break;
+	case 25:
+		return pi_io::e_pin::bcm_26;
+		break;
+	case 26:
+		return pi_io::e_pin::bcm_12;
+		break;
+	case 27:
+		return pi_io::e_pin::bcm_16;
+		break;
+	case 28:
+		return pi_io::e_pin::bcm_20;
+		break;
+	case 29:
+		return pi_io::e_pin::bcm_21;
+		break;
+	case 30:
+		return pi_io::e_pin::bcm_0;
+		break;
+	case 31:
+		return pi_io::e_pin::bcm_1;
+		break;
+	default:
+		std::cout << "No Pin match found!" << std::endl;
+		return pi_io::e_pin::bcm_0;	//try - catch block?
+	}
+	
+	
+}
