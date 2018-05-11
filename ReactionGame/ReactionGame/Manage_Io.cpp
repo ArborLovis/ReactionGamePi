@@ -2,16 +2,22 @@
 #include <cstring>
 #include <iostream>
 #include "IoFunctionsPi.h"
+#include <array>
 
-int pi_io::Manage_io::io_list_[28];
+int pi_io::Manage_io::io_list_[32] = {0};
 
 pi_io::Manage_io::Manage_io()
 {
-	for (auto& i : io_list_)	//initialize array
-		i = 0;
+	//for (auto& i : io_list_)	//initialize array
+	// i = 0;
+	unsigned short i = 0;
+	while (i < pin_numbers_)
+	{
+		io_list_[i++] = 0;
+	}
 }
 
-void pi_io::Manage_io::set_io_input(e_pin pin)
+void pi_io::Manage_io::register_pin_as_used(e_pin pin)
 {
 	io_list_[Io_functions_pi::map_pin(pin)] = 1;
 	//std::cout << "New IO set to: bcm_" << Io_functions_pi::map_pin(pin) << std::endl;
@@ -27,6 +33,27 @@ void pi_io::Manage_io::get_overall_status()
 {
 	for (auto i = 0; i < (sizeof(io_list_) / sizeof(*io_list_)); i++)
 	{
-		std::cout << "bcm_" << i << " = "; if (io_list_[i]) std::cout << "TRUE" << std::endl; else std::cout << "FALSE" << std::endl;
+		std::cout << "bcm_" << i << " = "; 
+		if (io_list_[i]) 
+			std::cout << "TRUE" << std::endl; 
+		else 
+			std::cout << "FALSE" << std::endl;
 	}	
+}
+
+void pi_io::Manage_io::request_pin(const unsigned short desired_pin)
+{
+	if (desired_pin < pin_numbers_)
+	{
+		if (io_list_[desired_pin] == 0)
+		{
+			io_list_[desired_pin] = 1;
+		}
+		else
+		{
+			throw "Pin is allready in use!";
+		}
+	}
+	else
+		throw "Wrong pin number";
 }

@@ -1,18 +1,24 @@
 #pragma once
 #include "PinPi.h"
+#include <array>
 
 namespace pi_io
 {
+	constexpr unsigned short pin_numbers_ = 32;
+
 	class Manage_io
 	{
 	public:
 		Manage_io();
-		static void set_io_input(e_pin pin);
+		static void register_pin_as_used(e_pin pin);
 		static bool get_io_status(e_pin pin);
 		static void get_overall_status();
 
+		static void request_pin(const unsigned short desired_pin);
+
 	private:
-		static int io_list_[28];
+		//static std::array<int, pin_numbers_> io_list_;
+		static int io_list_[pin_numbers_];
 		//static int test;
 	};
 }
