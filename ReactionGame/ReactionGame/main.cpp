@@ -24,6 +24,11 @@ pi_io::e_pin map_pin_numbers(const int pin_num);
 
 void do_absolutelly_nothing();
 
+void test_exception()
+{
+	throw std::invalid_argument("Test Exception");
+}
+
 // Global variables for button Player1 and Player2
 bool btn_hit_p1;
 bool status_btn_p1;
@@ -35,17 +40,27 @@ int64_t time_last_hit_p2;
 
 int main()
 {
-	/*
+	
 	//Debug of Exception handling
 	try
 	{
+		try
+		{
+			test_exception();
+		}
+		catch (const std::invalid_argument& e)
+		{
+			std::cerr << std::endl << "Throw in test function work" << std::endl;
+			std::cerr << e.what() << std::endl;
+		}
 		throw std::invalid_argument("Just a standard exception");
 	}
 	catch(const std::invalid_argument& e)
 	{
 		std::cout << "congrats, this exception works fine" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
-	*/
+	
 
 	try
 	{
@@ -81,7 +96,8 @@ int main()
 		//Shared Pins
 		auto state_nr = j_object["state"].get<int>();
 			
-		//Test IO Manager
+		//Test IO Manager - generating an error
+		//
 		const Digital_output_pi test_out1{ e_pin::bcm_10, e_mode::out };
 		const Digital_output_pi test_out2{ e_pin::bcm_10, e_mode::out };
 
@@ -303,13 +319,14 @@ int main()
 	}
 	catch (const std::string& test_err)
 	{
-		//std::cerr << test_err;
+		std::cerr << test_err;
 		std::cout << "Exeption has been thrown";
-		std::cout << test_err;
+		//std::cout << test_err;
 	}
 	catch(const std::out_of_range& e)
 	{
 		std::cout << "Out of range exception has been thrown" << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	catch(...)
 	{

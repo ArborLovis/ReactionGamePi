@@ -15,6 +15,7 @@ namespace pi_io
 
 		if (pi_io::Manage_io::get_io_status(pin))
 		{
+			std::cout << std::endl << "Here should an exception apear" << std::endl;
 			throw std::out_of_range("Error, Pin allready in use");
 			//throw "Error Pin allready in use";
 		}
