@@ -15,6 +15,7 @@
 #include "Manage_Io.h"
 #include "json.hpp"
 
+#define SWITCH_EXCEPTION_TEST
 
 void isr_button_player_1();
 void isr_button_player_2();
@@ -40,7 +41,8 @@ int64_t time_last_hit_p2;
 
 int main()
 {
-	
+	/*
+#ifndef SWITCH_EXCEPTION_TEST
 	//Debug of Exception handling
 	try
 	{
@@ -60,8 +62,8 @@ int main()
 		std::cout << "congrats, this exception works fine" << std::endl;
 		std::cerr << e.what() << std::endl;
 	}
-	
-
+#endif
+*/
 	try
 	{
 		// Setup Wiring PI - Note: further calls do not change the Setup
@@ -96,11 +98,6 @@ int main()
 		//Shared Pins
 		auto state_nr = j_object["state"].get<int>();
 			
-		//Test IO Manager - generating an error
-		//
-		const Digital_output_pi test_out1{ e_pin::bcm_10, e_mode::out };
-		const Digital_output_pi test_out2{ e_pin::bcm_10, e_mode::out };
-
 		// setup Input Button	
 		//
 		const Digital_input_pi btn_player_1{ map_pin_numbers(p1_btn_nr), e_pull_up_down::up, e_edge_type::falling, &isr_button_player_1 };
@@ -317,16 +314,18 @@ int main()
 		test::play_with_leds(led_player_1, led_player_2, led_status);
 	
 	}
-	catch (const std::string& test_err)
-	{
-		std::cerr << test_err;
-		std::cout << "Exeption has been thrown";
-		//std::cout << test_err;
-	}
 	catch(const std::out_of_range& e)
 	{
 		std::cout << "Out of range exception has been thrown" << std::endl;
 		std::cerr << e.what() << std::endl;
+	}
+	catch(const std::logic_error& e)
+	{
+		std::cerr << std::endl << "An error occured: " << e.what();
+	}
+	catch(const std::length_error& e)
+	{
+		std::cerr << std::endl << "An error occured: " << e.what();
 	}
 	catch(...)
 	{

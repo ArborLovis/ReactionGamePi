@@ -51,9 +51,9 @@ void pi_io::Manage_io::request_pin(const unsigned short desired_pin)
 		}
 		else
 		{
-			throw "Pin is allready in use!";
+			throw std::logic_error("Pin is allready in use!");
 		}
 	}
 	else
-		throw "Wrong pin number";
+		throw std::length_error("Pin Nr. does not exist!");
 }
