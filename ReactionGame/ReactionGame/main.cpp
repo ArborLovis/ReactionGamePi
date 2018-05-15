@@ -125,9 +125,9 @@ int main()
 		pi_game::Reaction_game the_game{ reaction_setup.read_num_plays_CLI() };	//start game by setting number of rounds
 
 		// turn all LEDs off
-		led_player_1.set_digital_output_false();
-		led_player_2.set_digital_output_false();
-		led_status.set_digital_output_false();
+		led_player_1.set(false);
+		led_player_2.set(false);
+		led_status.set(false);
 
 		// print countdown, if players are ready	
 		Game_setup::print_gamecountdown();
@@ -161,7 +161,7 @@ int main()
 				// turn on status led
 				if ((the_game.get_statusled_time() - act_time) < 0)	//turn on led between 5 - 10 seconds
 				{
-					led_status.set_digital_output_true();
+					led_status.set(true);
 				}
 
 				// terminate the game after 3 secound inactivity --> next round
@@ -266,18 +266,18 @@ int main()
 				the_game.calc_status_time();
 
 				// turn all LEDs off
-				led_player_1.set_digital_output_false();
-				led_player_2.set_digital_output_false();
-				led_status.set_digital_output_false();
+				led_player_1.set(false);
+				led_player_2.set(false);
+				led_status.set(false);
 			}
 
 			//wait for 3 seconds, so last round winner can be seen
 			if((the_game.get_rounds() == the_game.get_allready_played_rounds()) && (the_game.get_time_next_round() - act_time) < 0)
 			{
 				// turn all LEDs off
-				led_player_1.set_digital_output_false();
-				led_player_2.set_digital_output_false();
-				led_status.set_digital_output_false();
+				led_player_1.set(false);
+				led_player_2.set(false);
+				led_status.set(false);
 
 				the_game.set_over_all_active(FALSE);
 				std::cout << std::endl << "All rounds played!" << std::endl;

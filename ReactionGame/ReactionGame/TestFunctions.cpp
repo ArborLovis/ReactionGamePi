@@ -9,18 +9,18 @@ namespace test
 		constexpr int delay_time_100 = 100;
 		for(auto i = 0; i < 10; i ++)
 		{
-			led_p1.set_digital_output_true();
+			led_p1.set(true);
 			delay(delay_time_100);
-			led_p1.set_digital_output_false();
-			led_status.set_digital_output_true();
+			led_p1.set(false);
+			led_status.set(true);
 			delay(delay_time_100);
-			led_status.set_digital_output_false();
-			led_p2.set_digital_output_true();
+			led_status.set(false);
+			led_p2.set(true);
 			delay(delay_time_100);
-			led_p2.set_digital_output_false();
-			led_status.set_digital_output_true();
+			led_p2.set(false);
+			led_status.set(true);
 			delay(delay_time_100);
-			led_status.set_digital_output_false();
+			led_status.set(false);
 		}		
 	}
 	void winner_led_flashing(pi_io::Digital_output_pi led)
@@ -30,9 +30,9 @@ namespace test
 
 		for(auto i=0;i<flash_time_c;i++)
 		{
-			led.set_digital_output_true();
+			led.set(true);
 			delay(delay_time_100);
-			led.set_digital_output_false();
+			led.set(false);
 			delay(delay_time_100);
 		}
 	}

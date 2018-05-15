@@ -16,4 +16,5 @@ public:
 private:
 	std::string first_user_;
 	std::string second_user_;
+	static std::string default_name;
 };

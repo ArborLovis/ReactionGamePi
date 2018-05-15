@@ -6,14 +6,14 @@
 namespace pi_io
 {
 
-	int pi_io::Io_functions_pi::map_pud(e_pull_up_down pud)
+	int Io_functions_pi::map_pud(e_pull_up_down pud)
 	{
 		return pud == e_pull_up_down::up ? PUD_UP :
 			pud == e_pull_up_down::down ? PUD_DOWN :
 			PUD_OFF;
 	}
 
-	int pi_io::Io_functions_pi::map_edge(e_edge_type edge)
+	int Io_functions_pi::map_edge(e_edge_type edge)
 	{
 		return  edge == e_edge_type::both ? INT_EDGE_BOTH :
 			edge == e_edge_type::falling ? INT_EDGE_FALLING :

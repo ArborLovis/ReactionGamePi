@@ -56,7 +56,7 @@ namespace pi_game
 
 	void Reaction_game::set_player_led(pi_io::Digital_output_pi led)
 	{
-		led.set_digital_output_true();
+		led.set(true);
 	}
 
 	void Reaction_game::set_active_round(bool status)
@@ -107,6 +107,6 @@ namespace pi_game
 	void Reaction_game::show_winner(Player p, pi_io::Digital_output_pi led)
 	{
 		p.set_won_rounds_plus_one();
-		led.set_digital_output_true();
+		led.set(true);
 	}
 }

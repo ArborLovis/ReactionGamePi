@@ -23,12 +23,6 @@ namespace pi_io {
 		//std::cout << "New IO set to: bcm_" << Io_functions_pi::map_pin(pin) << std::endl;
 	}
 
-	bool Manage_io::get_io_status(e_pin pin)
-	{
-		//std::cout << "Status checked of IO: bcm_" << Io_functions_pi::map_pin(pin) << " = " << io_list_[Io_functions_pi::map_pin(pin)] << std::endl;
-		return io_list_[Io_functions_pi::map_pin(pin)];
-	}
-
 	void Manage_io::get_overall_status()
 	{
 		for (auto i = 0; i < pin_numbers_; i++)
