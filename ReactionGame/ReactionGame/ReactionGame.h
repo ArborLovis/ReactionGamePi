@@ -1,7 +1,6 @@
 #pragma once
 #include "Player.h"
 #include <chrono>
-#include "DigitalInputPi.h"
 #include "DigitalOutputPi.h"
 
 namespace pi_game

@@ -4,8 +4,6 @@
 
 namespace pi_io
 {
-	constexpr unsigned short pin_numbers_ = 32;
-
 	class Manage_io
 	{
 	public:
@@ -17,8 +15,8 @@ namespace pi_io
 		static void request_pin(const unsigned short desired_pin);
 
 	private:
-		//static std::array<int, pin_numbers_> io_list_;
-		static int io_list_[pin_numbers_];
+		static constexpr unsigned short pin_numbers_ = 32;
+		static std::array<int, pin_numbers_> io_list_;
 		//static int test;
 	};
 }

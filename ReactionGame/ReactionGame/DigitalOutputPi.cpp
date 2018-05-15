@@ -4,7 +4,6 @@
 #include "IoFunctionsPi.h"
 #include "Manage_Io.h"
 #include <stdexcept>
-#include <exception>
 
 
 namespace pi_io

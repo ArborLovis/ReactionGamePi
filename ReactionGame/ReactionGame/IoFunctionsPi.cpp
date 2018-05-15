@@ -1,9 +1,6 @@
 #include "IoFunctionsPi.h"
 #include <wiringPi.h>
 #include "Enums.h"
-#include <ostream>
-#include <iostream>
-#include <chrono>
 
 
 namespace pi_io

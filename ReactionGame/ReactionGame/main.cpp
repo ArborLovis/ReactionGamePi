@@ -4,7 +4,6 @@
 #include <chrono>		//for timing conditions
 #include <fstream>
 #include <stdexcept>
-#include <exception>
 
 #include "DigitalInputPi.h"
 #include "PinPi.h"

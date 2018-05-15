@@ -1,7 +1,9 @@
 #include "GameSetup.h"
+#include <wiringPi.h>
+
 #include <sstream>
 #include <limits>
-#include "pi_gpio_headers.h"
+#include <iostream>
 
 Game_setup::Game_setup() : first_user_{"undefined"}, second_user_{"undefined"}
 {}

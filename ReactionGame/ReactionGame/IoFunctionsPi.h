@@ -1,7 +1,6 @@
 #pragma once
 #include "Enums.h"
 #include "PinPi.h"
-#include <cstdint>
 
 namespace pi_io
 {

@@ -1,11 +1,7 @@
 #pragma once
 
-#include <wiringPi.h>
 #include <string>
-#include <iostream>
 #include <sstream>
-
-#include "pi_gpio_headers.h"
 
 class Game_setup
 {
