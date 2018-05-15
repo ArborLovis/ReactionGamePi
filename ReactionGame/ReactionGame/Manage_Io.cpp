@@ -17,9 +17,9 @@ namespace pi_io {
 		}
 	}
 
-	void Manage_io::register_pin_as_used(e_pin pin)
+	void Manage_io::register_pin_as_used(Pin pin)
 	{
-		io_list_[Io_functions_pi::map_pin(pin)] = 1;
+		request_pin(map_pin(pin));
 		//std::cout << "New IO set to: bcm_" << Io_functions_pi::map_pin(pin) << std::endl;
 	}
 

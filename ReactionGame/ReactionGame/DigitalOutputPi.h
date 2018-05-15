@@ -8,12 +8,12 @@ namespace pi_io
 	class Digital_output_pi
 	{
 	public:
-		Digital_output_pi(e_pin pin, e_mode mode);
+		Digital_output_pi(Pin pin, Mode mode);
 		void set(bool value) const;
 		bool get() const;
 
 	private:
-		e_pin pin_numb_;
+		Pin pin_numb_;
 
 	};
 }

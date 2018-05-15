@@ -5,13 +5,13 @@
 
 namespace pi_io
 {
-	Digital_output_pi::Digital_output_pi(e_pin pin, e_mode mode)
+	Digital_output_pi::Digital_output_pi(Pin pin, Mode mode)
 	{
 		pin_numb_ = pin;
 
 		Manage_io::register_pin_as_used(pin);
 
-		pinMode(static_cast<int>(pin_numb_), Io_functions_pi::map_mode(mode));
+		pinMode(static_cast<int>(pin_numb_), map_mode(mode));
 		//std::cout << "All Outputsettings done! Pinnumber = " << static_cast<int> (pin_numb_) << std::endl;
 	}
 	

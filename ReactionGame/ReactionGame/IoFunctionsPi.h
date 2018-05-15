@@ -4,14 +4,9 @@
 
 namespace pi_io
 {
-	class Io_functions_pi
-	{
-		public:
-			static int map_pud(e_pull_up_down pud);
-			static int map_edge(e_edge_type edge);
-			static int map_mode(e_mode mode);
-			static int map_pin(e_pin pin);
-	};
-
-	
+	int map_pud(Pull_up_down pud);
+	int map_edge(Edge_type edge);
+	int map_mode(Mode mode);
+	int map_pin(Pin pin);
+	Pin map_pin_numbers(const int pin_num);
 }

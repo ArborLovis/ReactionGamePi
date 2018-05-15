@@ -6,22 +6,20 @@
 #include <stdexcept>
 
 #include "DigitalInputPi.h"
-#include "PinPi.h"
 #include "DigitalOutputPi.h"
 #include "ReactionGame.h"
 #include "TestFunctions.h"
 #include "../ReactionGame/Files_Patrick_old/GameSetup.h"
 #include "Manage_Io.h"
 #include "json.hpp"
+#include "IoFunctionsPi.h"
 
 #define SWITCH_EXCEPTION_TEST
 
 void isr_button_player_1();
 void isr_button_player_2();
 void spy_btn_status(pi_io::Digital_input_pi btn_player_1, pi_io::Digital_input_pi btn_player_2);
-
-pi_io::e_pin map_pin_numbers(const int pin_num);
-
+nlohmann::json read_config(std::string file_name);
 void do_absolutelly_nothing();
 
 void test_exception()
@@ -37,6 +35,7 @@ int64_t time_last_hit_p1;
 bool btn_hit_p2;
 bool status_btn_p2;
 int64_t time_last_hit_p2;
+
 
 int main()
 {
@@ -74,47 +73,26 @@ int main()
 
 		// reading IO_pins from json file
 
-		std::ifstream in_pinout("pins.json", std::ifstream::binary);
-		nlohmann::json j_object;
-		std::stringstream iss;
+		nlohmann::json j_object = read_config("pins.json");
 
-		iss << in_pinout.rdbuf();	//not sure about it, but i think it is just a safe way to read the input
-		in_pinout.close();			//I had trouble with reading the json file, so I play a little bit around
-		j_object << iss;
-
-		//
-		// PIN - Numbers of Player 1
-		//
-		auto p1_led_nr = j_object["p1_led"].get<int>();
-		auto p1_btn_nr = j_object["p1_button"].get<int>();
-	
-		//
-		// PIN - Numbers of Player 2
-		//
-		auto p2_led_nr = j_object["p2_led"].get<int>();
-		auto p2_btn_nr = j_object["p2_button"].get<int>();
-
-		//Shared Pins
-		auto state_nr = j_object["state"].get<int>();
-			
 		// setup Input Button	
 		//
-		const Digital_input_pi btn_player_1{ map_pin_numbers(p1_btn_nr), e_pull_up_down::up, e_edge_type::falling, &isr_button_player_1 };
-		const Digital_input_pi btn_player_2{ map_pin_numbers(p2_btn_nr), e_pull_up_down::up, e_edge_type::falling, &isr_button_player_2 };
+		const Digital_input_pi btn_player_1{ map_pin_numbers(j_object["p1_led"].get<int>()), 
+			Pull_up_down::up, Edge_type::falling, &isr_button_player_1 };
+		const Digital_input_pi btn_player_2{ map_pin_numbers(j_object["p2_button"].get<int>()), 
+			Pull_up_down::up, Edge_type::falling, &isr_button_player_2 };
 
 		// setup Output LED's
 		//
-		const Digital_output_pi led_player_1{ map_pin_numbers(p1_led_nr), e_mode::out };
-		const Digital_output_pi led_player_2{ map_pin_numbers(p2_led_nr), e_mode::out };
-		const Digital_output_pi led_status{ map_pin_numbers(state_nr), e_mode::out };
+		const Digital_output_pi led_player_1{ map_pin_numbers(j_object["p1_button"].get<int>()), Mode::out };
+		const Digital_output_pi led_player_2{ map_pin_numbers(j_object["p2_led"].get<int>()), Mode::out };
+		const Digital_output_pi led_status{ map_pin_numbers(j_object["state"].get<int>()), Mode::out };
 	
 		Manage_io::get_overall_status();
 
 		// Game setup - read usernames and number of plays from the CLI
 		//
 		Game_setup reaction_setup;
-		std::string player_name_1;
-		std::string player_name_2;
 
 		reaction_setup.print_setup_mask();
 
@@ -145,7 +123,6 @@ int main()
 		auto act_time = std::chrono::duration_cast<std::chrono::microseconds>(sys_now).count();
 	
 		constexpr long three_second = 3000000;		// for microsecond calc time
-		short winner_announced = 0;
 
 		//start the reaction game
 		//
@@ -322,10 +299,6 @@ int main()
 	{
 		std::cerr << std::endl << "An error occured: " << e.what();
 	}
-	catch(const std::length_error& e)
-	{
-		std::cerr << std::endl << "An error occured: " << e.what();
-	}
 	catch(...)
 	{
 		std::cout << "Default Exception Handler";
@@ -400,97 +373,17 @@ void spy_btn_status(pi_io::Digital_input_pi btn_player_1, pi_io::Digital_input_p
 	status_last_btn_p2 = act_status_btn2;
 }
 
- pi_io::e_pin map_pin_numbers(const int pin_num)
+nlohmann::json read_config(std::string file_name)
 {
-	switch (pin_num)
-	{
-	case 0:
-		return pi_io::e_pin::bcm_17;
-		break;
-	case 1:
-		return pi_io::e_pin::bcm_18;
-		break;
-	case 2:
-		return pi_io::e_pin::bcm_27;
-		break;
-	case 3:
-		return pi_io::e_pin::bcm_22;
-		break;
-	case 4:
-		return pi_io::e_pin::bcm_23;
-		break;
-	case 5:
-		return pi_io::e_pin::bcm_24;
-		break;
-	case 6:
-		return pi_io::e_pin::bcm_25;
-		break;
-	case 7:
-		return pi_io::e_pin::bcm_4;
-		break;
-	case 8:
-		return pi_io::e_pin::bcm_2;
-		break;
-	case 9:
-		return pi_io::e_pin::bcm_3;
-		break;
-	case 10:
-		return pi_io::e_pin::bcm_8;
-		break;
-	case 11:
-		return pi_io::e_pin::bcm_7;
-		break;
-	case 12:
-		return pi_io::e_pin::bcm_10;
-		break;
-	case 13:
-		return pi_io::e_pin::bcm_9;
-		break;
-	case 14:
-		return pi_io::e_pin::bcm_11;
-		break;
-	case 15:
-		return pi_io::e_pin::bcm_14;
-		break;
-	case 16:
-		return pi_io::e_pin::bcm_15;
-		break;
-	case 21:
-		return pi_io::e_pin::bcm_5;
-		break;
-	case 22:
-		return pi_io::e_pin::bcm_6;
-		break;
-	case 23:
-		return pi_io::e_pin::bcm_13;
-		break;
-	case 24:
-		return pi_io::e_pin::bcm_19;
-		break;
-	case 25:
-		return pi_io::e_pin::bcm_26;
-		break;
-	case 26:
-		return pi_io::e_pin::bcm_12;
-		break;
-	case 27:
-		return pi_io::e_pin::bcm_16;
-		break;
-	case 28:
-		return pi_io::e_pin::bcm_20;
-		break;
-	case 29:
-		return pi_io::e_pin::bcm_21;
-		break;
-	case 30:
-		return pi_io::e_pin::bcm_0;
-		break;
-	case 31:
-		return pi_io::e_pin::bcm_1;
-		break;
-	default:
-		throw "No Pin match found!";
-	}
+	nlohmann::json j_object;
+	std::ifstream in_pinout(file_name);
+	std::stringstream iss;
+
+	iss << in_pinout.rdbuf();	//not sure about it, but i think it is just a safe way to read the input
+	in_pinout.close();			//I had trouble with reading the json file, so I play a little bit around
+	j_object << iss;
+
+	return j_object;
 }
 
 void do_absolutelly_nothing()

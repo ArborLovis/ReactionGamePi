@@ -30,7 +30,7 @@ std::string Game_setup::read_usernames_CLI() // MFA naming: rename to something 
 	unsigned short cnt_player = 0;
 			
 		while(cnt_player != 2)
-		{
+		{ // MFA - this implementation is somehow awkward. why don't you have one method that reads a user name and call it twice, once for each player?
 			std::cout << std::endl << "Player " << ++cnt_player << ", please enter YOUR username: ";
 			getline(std::cin, user);
 			std::stringstream in_username{ user };

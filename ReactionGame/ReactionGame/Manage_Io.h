@@ -8,10 +8,10 @@ namespace pi_io
 	{
 	public:
 		Manage_io();
-		static void register_pin_as_used(e_pin pin);
+		static void register_pin_as_used(Pin pin);
 		static void get_overall_status();
 
-		static void request_pin(const unsigned short desired_pin);
+		static void request_pin(unsigned short desired_pin);
 
 	private:
 		static constexpr unsigned short pin_numbers_ = 32;
