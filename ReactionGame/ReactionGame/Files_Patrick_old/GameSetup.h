@@ -1,11 +1,7 @@
 #pragma once
 
-#include <wiringPi.h>
 #include <string>
-#include <iostream>
 #include <sstream>
-
-#include "pi_gpio_headers.h"
 
 class Game_setup
 {
@@ -20,4 +16,5 @@ public:
 private:
 	std::string first_user_;
 	std::string second_user_;
+	static std::string default_name;
 };

@@ -1,7 +1,6 @@
 #pragma once
 #include "PinPi.h"
 #include "Enums.h"
-#include "IoFunctionsPi.h"
 
 
 namespace pi_io
@@ -9,10 +8,10 @@ namespace pi_io
 	class Digital_input_pi
 	{
 	public:
-		Digital_input_pi(e_pin pin, e_pull_up_down pud, e_edge_type edge, void(*isr_function)(void));
+		Digital_input_pi(Pin pin, Pull_up_down pud, Edge_type edge, void(*isr_function)(void));
 		bool get_digital_input() const;
 		
 	private:
-		e_pin pin_numb_;
+		Pin pin_numb_;
 	};
 }

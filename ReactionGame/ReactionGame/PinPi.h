@@ -3,7 +3,7 @@
 namespace pi_io
 {	
 	// using WiringPiSetup(); to config right
-	enum class e_pin	
+	enum class Pin	
 	{
 		bcm_0 = 30,	
 		bcm_1 = 31,
