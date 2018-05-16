@@ -1,4 +1,4 @@
-#include <wiringPi.h>
+#include "piproxy.h"
 #include <iostream>
 #include <sstream>
 #include <chrono>		//for timing conditions

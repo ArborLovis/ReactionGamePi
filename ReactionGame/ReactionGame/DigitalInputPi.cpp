@@ -1,6 +1,6 @@
 
 #include "DigitalInputPi.h"
-#include <wiringPi.h>
+#include "piproxy.h"
 #include <iostream>
 #include "IoFunctionsPi.h"
 #include "Manage_Io.h"

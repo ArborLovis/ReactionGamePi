@@ -1,6 +1,6 @@
 #pragma once
 
-#include <wiringPi.h>
+#include "piproxy.h"
 #include <string>
 #include <iostream>
 #include <sstream>
