@@ -5,16 +5,48 @@ VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGame", "ReactionGame\ReactionGame.vcxproj", "{7859E980-F2D2-4EB2-9B10-552F954C2ADD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameLib", "ReactionGameLib\ReactionGameLib.vcxproj", "{C4AE1177-4537-43E0-9498-87E9C00441DD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameWin", "ReactionGameWin\ReactionGameWin.vcxproj", "{7C187475-7023-426F-9EF0-740AEDF52064}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Debug|ARM.ActiveCfg = Debug|ARM
 		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Debug|ARM.Build.0 = Debug|ARM
+		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Debug|x64.ActiveCfg = Debug|ARM
+		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Debug|x86.ActiveCfg = Debug|ARM
 		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Release|ARM.ActiveCfg = Release|ARM
 		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Release|ARM.Build.0 = Release|ARM
+		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Release|x64.ActiveCfg = Release|ARM
+		{7859E980-F2D2-4EB2-9B10-552F954C2ADD}.Release|x86.ActiveCfg = Release|ARM
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Debug|ARM.ActiveCfg = Debug|Win32
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Debug|x64.ActiveCfg = Debug|x64
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Debug|x64.Build.0 = Debug|x64
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Debug|x86.ActiveCfg = Debug|Win32
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Debug|x86.Build.0 = Debug|Win32
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Release|ARM.ActiveCfg = Release|Win32
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Release|x64.ActiveCfg = Release|x64
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Release|x64.Build.0 = Release|x64
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Release|x86.ActiveCfg = Release|Win32
+		{C4AE1177-4537-43E0-9498-87E9C00441DD}.Release|x86.Build.0 = Release|Win32
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Debug|ARM.ActiveCfg = Debug|Win32
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Debug|x64.ActiveCfg = Debug|x64
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Debug|x64.Build.0 = Debug|x64
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Debug|x86.ActiveCfg = Debug|Win32
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Debug|x86.Build.0 = Debug|Win32
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|ARM.ActiveCfg = Release|Win32
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x64.ActiveCfg = Release|x64
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x64.Build.0 = Release|x64
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x86.ActiveCfg = Release|Win32
+		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

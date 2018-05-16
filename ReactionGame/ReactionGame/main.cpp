@@ -301,7 +301,7 @@ int main()
 	}
 	catch(...)
 	{
-		std::cout << "Default Exception Handler";
+		std::cout << "Default Exception Handler" << std::endl;
 	}
 
 	return 0;
@@ -381,7 +381,7 @@ nlohmann::json read_config(std::string file_name)
 
 	iss << in_pinout.rdbuf();	//not sure about it, but i think it is just a safe way to read the input
 	in_pinout.close();			//I had trouble with reading the json file, so I play a little bit around
-	j_object << iss;
+	iss >> j_object;
 
 	return j_object;
 }

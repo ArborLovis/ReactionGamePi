@@ -35,7 +35,7 @@ namespace pi_io {
 		}
 	}
 
-	void Manage_io::request_pin(const unsigned short desired_pin)
+	void Manage_io::request_pin(const int desired_pin)
 	{
 		if (desired_pin < pin_numbers_)
 		{

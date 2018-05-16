@@ -1,5 +1,5 @@
 #include "GameSetup.h"
-#include <wiringPi.h>
+#include "../piproxy.h"
 
 #include <sstream>
 #include <limits>

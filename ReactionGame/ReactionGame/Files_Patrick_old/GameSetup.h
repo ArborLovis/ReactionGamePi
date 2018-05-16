@@ -1,6 +1,6 @@
 #pragma once
 
-#include "piproxy.h"
+#include "../piproxy.h"
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -20,4 +20,5 @@ public:
 private:
 	std::string first_user_;
 	std::string second_user_;
+	static std::string default_name;
 };
