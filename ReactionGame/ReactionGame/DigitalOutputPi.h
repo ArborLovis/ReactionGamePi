@@ -2,21 +2,18 @@
 #include "PinPi.h"
 #include "Enums.h"
 
-#include "IoFunctionsPi.h"
-
 
 namespace pi_io
 {
 	class Digital_output_pi
 	{
 	public:
-		Digital_output_pi(e_pin pin, e_mode mode);
-		void set_digital_output_true() const;
-		void set_digital_output_false() const;
-		bool get_digital_output() const;
+		Digital_output_pi(Pin pin, Mode mode);
+		void set(bool value) const;
+		bool get() const;
 
 	private:
-		e_pin pin_numb_;
+		Pin pin_numb_;
 
 	};
 }

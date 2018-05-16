@@ -4,22 +4,18 @@
 
 namespace pi_io
 {
-	constexpr unsigned short pin_numbers_ = 32;
-
 	class Manage_io
 	{
 	public:
 		Manage_io();
-		static void register_pin_as_used(e_pin pin);
-		static bool get_io_status(e_pin pin);
+		static void register_pin_as_used(Pin pin);
 		static void get_overall_status();
 
-		static void request_pin(const unsigned short desired_pin);
+		static void request_pin(unsigned short desired_pin);
 
 	private:
-		//static std::array<int, pin_numbers_> io_list_;
-		static int io_list_[pin_numbers_];
-		//static int test;
+		static constexpr unsigned short pin_numbers_ = 32;
+		static std::array<int, pin_numbers_> io_list_;
 	};
 }
 

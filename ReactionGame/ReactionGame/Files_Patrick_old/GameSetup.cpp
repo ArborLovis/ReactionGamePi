@@ -1,12 +1,16 @@
 #include "GameSetup.h"
+#include <wiringPi.h>
+
 #include <sstream>
 #include <limits>
-#include "pi_gpio_headers.h"
+#include <iostream>
 
-Game_setup::Game_setup() : first_user_{"undefined"}, second_user_{"undefined"}
+std::string Game_setup::default_name = "undefined";
+
+Game_setup::Game_setup() : first_user_{ default_name }, second_user_{ default_name }
 {}
 
-void Game_setup::print_setup_mask() const // MFA may be const
+void Game_setup::print_setup_mask() const
 {
 	std::cout << std::endl << "The Reaction Game" << std::endl;
 
@@ -22,43 +26,37 @@ void Game_setup::print_setup_mask() const // MFA may be const
 
 std::string Game_setup::read_usernames_CLI() // MFA naming: rename to something like 'add_users', then provide accessor methods for user names
 {
-	// MFA avoid magic constants like 'undefined' - what if you make a typo once?
-	std::string user = "undefined"; // MFA curly braces not needed
+	std::string user = default_name;
 	unsigned short cnt_player = 0;
 			
 		while(cnt_player != 2)
-		{
+		{ // MFA - this implementation is somehow awkward. why don't you have one method that reads a user name and call it twice, once for each player?
 			std::cout << std::endl << "Player " << ++cnt_player << ", please enter YOUR username: ";
 			getline(std::cin, user);
 			std::stringstream in_username{ user };
-			if (in_username >> user) // MFA reading a string should be safe, i don't think all that error handling is needed
+			if (in_username >> user)
 			{
-				if(first_user_ == "undefined")
+				if(first_user_ == default_name)
 				{
 					first_user_ = user;
 					std::cout << "Great, your selected username is: " << user << std::endl;
 					return first_user_;
-					// MFA you could return first_user_ here right away!
-					//first_user_.replace(first_user_.begin(), first_user_.end(), user);
 				}
-				else if((second_user_ == "undefined") && (first_user_ != user))
+				
+				if((second_user_ == default_name) && (first_user_ != user))
 				{
 					second_user_ = user;
 					std::cout << "Great, your selected username is: " << user << std::endl;
 					return second_user_;
-					// MFA you could return second_user_ here right away!
 				}
-				else
-				{
-					std::cout << std::endl << "Sorry, this username allready exists. Please try another!" << std::endl;
-					user = "undefined";
-					cnt_player--;
-				}
+				
+				std::cout << std::endl << "Sorry, this username allready exists. Please try another!" << std::endl;
+				user = default_name;
+				cnt_player--;
 			}
 			else
 			{
-				user = "undefined";
-				//user.replace(user.begin(), user.end(), "undefined"); // MFA probably safe, but not clear. use 'user = "undefined"' instead
+				user = default_name;
 			}
 
 		}
@@ -72,20 +70,20 @@ std::string Game_setup::get_username(short const first_sec) const
 	else if (first_sec)
 		return second_user_;
 	else
-		return "undefind";
+		return default_name;
 }
 
 unsigned int Game_setup::read_num_plays_CLI() const
 {
-	std::string s_num_plays; // MFA move declaration closer to initialization
-	int number_plays = 0; // MFA no hungarian notation, see cpp core guideline NL.5
+	int number_plays = 0;
 
 	std::cout << std::endl << "How many rounds do you want do play?" << std::endl;
 	std::cout << "NOTE: Value should be grater than 0!" << std::endl << std::endl;
 
-	while(number_plays == false)	// MFA use boolean instead of 'not int'. this is C-style
+	while(number_plays == 0)
 	{
 		std::cout << "Enter max. round to be played: ";
+		std::string s_num_plays;
 		std::cin >> s_num_plays;
 		
 		std::string::size_type sz;		// --> why??? || Sorce: http://www.cplusplus.com/reference/string/stoi/ (21.04.2018)		
