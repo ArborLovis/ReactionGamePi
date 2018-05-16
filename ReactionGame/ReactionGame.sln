@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameLib", "Reaction
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameWin", "ReactionGameWin\ReactionGameWin.vcxproj", "{7C187475-7023-426F-9EF0-740AEDF52064}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactionGameTest", "ReactionGameTest\ReactionGameTest.vcxproj", "{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -47,6 +49,16 @@ Global
 		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x64.Build.0 = Release|x64
 		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x86.ActiveCfg = Release|Win32
 		{7C187475-7023-426F-9EF0-740AEDF52064}.Release|x86.Build.0 = Release|Win32
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Debug|ARM.ActiveCfg = Debug|Win32
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Debug|x64.ActiveCfg = Debug|x64
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Debug|x64.Build.0 = Debug|x64
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Debug|x86.ActiveCfg = Debug|Win32
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Debug|x86.Build.0 = Debug|Win32
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Release|ARM.ActiveCfg = Release|Win32
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Release|x64.ActiveCfg = Release|x64
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Release|x64.Build.0 = Release|x64
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Release|x86.ActiveCfg = Release|Win32
+		{3E2C9655-D1F1-45FC-9F4B-45BEE0161BA8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
