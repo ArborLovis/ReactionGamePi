@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "./Files_Patrick_old/GameSetup.h"
 #include <iostream>
 
 namespace pi_game
@@ -8,6 +9,21 @@ namespace pi_game
 	{
 		name_ = name;
 		won_rounds_ = 0;
+	}
+
+	Player Player::create_player() 
+	{
+		Game_setup read_name;
+		std::string name = read_name.read_usernames_CLI();
+		
+		while (!read_name.check_user_exists(name))
+		{
+			name = read_name.read_usernames_CLI();
+		}
+		read_name.add_user(name);
+
+		Player p{ name };
+		return p;
 	}
 
 	std::string Player::get_username() const
@@ -24,5 +40,10 @@ namespace pi_game
 	unsigned int Player::get_won_rounds() const
 	{
 		return won_rounds_;
+	}
+
+	Player::~Player()
+	{
+		Game_setup::delete_user(name_);
 	}
 }
