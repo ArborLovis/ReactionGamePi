@@ -71,6 +71,7 @@
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Manage_Io.h" />
     <ClInclude Include="PinPi.h" />
+    <ClInclude Include="piproxy.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ReactionGame.h" />
     <ClInclude Include="TestFunctions.h" />

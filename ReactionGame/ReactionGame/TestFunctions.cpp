@@ -1,5 +1,5 @@
 #include "TestFunctions.h"
-#include <wiringPi.h>
+#include "piproxy.h"
 
 
 namespace test

@@ -1,5 +1,5 @@
 #include "IoFunctionsPi.h"
-#include <wiringPi.h>
+#include "piproxy.h"
 #include "Enums.h"
 
 

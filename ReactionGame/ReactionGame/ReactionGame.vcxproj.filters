@@ -73,5 +73,6 @@
       <Filter>IO_Files</Filter>
     </ClInclude>
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="piproxy.h" />
   </ItemGroup>
 </Project>
