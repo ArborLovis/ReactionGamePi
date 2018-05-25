@@ -1,7 +1,11 @@
 #pragma once
 
+#include "../piproxy.h"
 #include <string>
+#include <iostream>
 #include <sstream>
+
+#include "pi_gpio_headers.h"
 
 class Game_setup
 {

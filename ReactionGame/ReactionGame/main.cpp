@@ -20,6 +20,7 @@ void isr_button_player_1();
 void isr_button_player_2();
 void spy_btn_status(pi_io::Digital_input_pi btn_player_1, pi_io::Digital_input_pi btn_player_2);
 nlohmann::json read_config(std::string file_name);
+void do_absolutelly_nothing();
 
 void test_exception()
 {
@@ -35,8 +36,32 @@ bool btn_hit_p2;
 bool status_btn_p2;
 int64_t time_last_hit_p2;
 
+
 int main()
 {
+	/*
+#ifndef SWITCH_EXCEPTION_TEST
+	//Debug of Exception handling
+	try
+	{
+		try
+		{
+			test_exception();
+		}
+		catch (const std::invalid_argument& e)
+		{
+			std::cerr << std::endl << "Throw in test function work" << std::endl;
+			std::cerr << e.what() << std::endl;
+		}
+		throw std::invalid_argument("Just a standard exception");
+	}
+	catch(const std::invalid_argument& e)
+	{
+		std::cout << "congrats, this exception works fine" << std::endl;
+		std::cerr << e.what() << std::endl;
+	}
+#endif
+*/
 	try
 	{
 		// Setup Wiring PI - Note: further calls do not change the Setup
@@ -63,7 +88,7 @@ int main()
 		const Digital_output_pi led_player_2{ map_pin_numbers(j_object["p2_led"].get<int>()), Mode::out };
 		const Digital_output_pi led_status{ map_pin_numbers(j_object["state"].get<int>()), Mode::out };
 	
-		//Manage_io::get_overall_status();
+		Manage_io::get_overall_status();
 
 		// Game setup - read usernames and number of plays from the CLI
 		//
@@ -276,7 +301,7 @@ int main()
 	}
 	catch(...)
 	{
-		std::cout << "Default Exception Handler";
+		std::cout << "Default Exception Handler" << std::endl;
 	}
 
 	return 0;
@@ -357,7 +382,11 @@ nlohmann::json read_config(std::string file_name)
 	iss << in_pinout.rdbuf();	//not sure about it, but i think it is just a safe way to read the input
 	in_pinout.close();			//I had trouble with reading the json file, so I play a little bit around
 	iss >> j_object;
-	//j_object << iss; //false argument
 
 	return j_object;
+}
+
+void do_absolutelly_nothing()
+{
+	
 }

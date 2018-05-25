@@ -14,7 +14,7 @@ namespace pi_io
 		pinMode(static_cast<int>(pin_numb_), map_mode(mode));
 		//std::cout << "All Outputsettings done! Pinnumber = " << static_cast<int> (pin_numb_) << std::endl;
 	}
-	
+
 	void Digital_output_pi::set(bool value) const
 	{
 		digitalWrite(static_cast<int>(pin_numb_), value);

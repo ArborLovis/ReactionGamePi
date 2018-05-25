@@ -19,18 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ReactionGame\DigitalInputPi.cpp" />
-    <ClCompile Include="..\ReactionGame\DigitalOutputPi.cpp" />
-    <ClCompile Include="..\ReactionGame\Files_Patrick_old\GameSetup.cpp" />
-    <ClCompile Include="..\ReactionGame\IoFunctionsPi.cpp" />
-    <ClCompile Include="..\ReactionGame\Manage_Io.cpp" />
-    <ClCompile Include="..\ReactionGame\Player.cpp" />
-    <ClCompile Include="..\ReactionGame\ReactionGame.cpp" />
-    <ClCompile Include="..\ReactionGame\TestFunctions.cpp" />
-    <ClCompile Include="winpi.cpp" />
-    <ClCompile Include="WinpiEmulator.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\ReactionGame\DigitalInputPi.h" />
     <ClInclude Include="..\ReactionGame\DigitalOutputPi.h" />
     <ClInclude Include="..\ReactionGame\Enums.h" />
@@ -47,11 +35,23 @@
     <ClInclude Include="WinpiEmulator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ReactionGame\DigitalInputPi.cpp" />
+    <ClCompile Include="..\ReactionGame\DigitalOutputPi.cpp" />
+    <ClCompile Include="..\ReactionGame\Files_Patrick_old\GameSetup.cpp" />
+    <ClCompile Include="..\ReactionGame\IoFunctionsPi.cpp" />
+    <ClCompile Include="..\ReactionGame\Manage_Io.cpp" />
+    <ClCompile Include="..\ReactionGame\Player.cpp" />
+    <ClCompile Include="..\ReactionGame\ReactionGame.cpp" />
+    <ClCompile Include="..\ReactionGame\TestFunctions.cpp" />
+    <ClCompile Include="winpi.cpp" />
+    <ClCompile Include="WinpiEmulator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\ReactionGame\pins.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{6691DFE1-91FE-40FA-A4B8-044750099FB6}</ProjectGuid>
+    <ProjectGuid>{C4AE1177-4537-43E0-9498-87E9C00441DD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ReactionGameLib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>

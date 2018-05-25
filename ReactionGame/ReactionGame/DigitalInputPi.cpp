@@ -1,14 +1,15 @@
 
 #include "DigitalInputPi.h"
 #include "piproxy.h"
-
+#include <iostream>
 #include "IoFunctionsPi.h"
 #include "Manage_Io.h"
-
+#include <stdexcept>
+#include <exception>
 
 
 namespace pi_io
-{
+{	
 	Digital_input_pi::Digital_input_pi(Pin pin, const Pull_up_down pud, const Edge_type edge, void(*isr_function)(void))
 	{
 		pin_numb_ = pin;
@@ -21,9 +22,9 @@ namespace pi_io
 		//std::cout << "All Inputsettings done! Pinnumber = " << static_cast<int> (pin_numb_) << std::endl;
 	}
 
-	bool Digital_input_pi::get_digital_input() const
+	bool pi_io::Digital_input_pi::get_digital_input() const
 	{
 		return digitalRead(static_cast<int>(pin_numb_));
-	}
+	}	
 }
 
