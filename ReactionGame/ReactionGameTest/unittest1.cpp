@@ -11,13 +11,13 @@
  */
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace ReactionGameTest
+namespace reaction_game_test
 {		
-	TEST_CLASS(PlayerTest)	//info, which class is going to be tested.
+	TEST_CLASS(Player_test)	//info, which class is going to be tested.
 	{
 	public:
 		
-		TEST_METHOD(TestConstruction)	//Here, test will be done
+		TEST_METHOD(test_construction)	//Here, test will be done
 		{
 			pi_game::Player p1{ "Michael" };
 			
