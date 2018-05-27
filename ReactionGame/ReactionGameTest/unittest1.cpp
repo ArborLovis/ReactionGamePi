@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../ReactionGame/Player.h"
+#include "../ReactionGame/Enums.h"
+#include "../ReactionGame/Manage_Io.h"
 /*
  * Note: Following methods has to be tested:
 		
@@ -33,4 +35,20 @@ namespace reaction_game_test
 			Assert::AreEqual(1, static_cast<int>(p1.get_won_rounds()));
 		}
 	};
+/*
+	TEST_CLASS(Manage_io_test)
+	{
+	public:
+		TEST_METHOD(test_io_manager)
+		{
+			pi_io::Manage_io pin_manager;
+
+			//check, if pin is registered
+			//
+			pi_io::Manage_io::register_pin_as_used(pi_io::Pin::bcm_0);
+			Assert::IsTrue(pin_manager.check_pin_in_use(pi_io::Pin::bcm_0));	//used
+			Assert::IsFalse(pin_manager.check_pin_in_use(pi_io::Pin::bcm_1));	//not used
+		}
+	};
+	*/
 }

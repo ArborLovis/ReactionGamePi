@@ -51,4 +51,8 @@ namespace pi_io {
 		else
 			throw std::length_error("Pin Nr. does not exist!");
 	}
+	bool Manage_io::check_pin_in_use(Pin desired_pin)
+	{
+		return io_list_.at(map_pin(desired_pin)) != 0;
+	}
 }

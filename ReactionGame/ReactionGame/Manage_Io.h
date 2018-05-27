@@ -12,6 +12,7 @@ namespace pi_io
 		static void get_overall_status();
 
 		static void request_pin(int desired_pin);
+		bool check_pin_in_use(Pin desired_pin);
 
 	private:
 		static constexpr int pin_numbers_ = 32;
