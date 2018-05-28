@@ -18,7 +18,5 @@ namespace pi_game
 	private:
 		std::string name_;
 		unsigned int won_rounds_;
-
-
 	};
 }

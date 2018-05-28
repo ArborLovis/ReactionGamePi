@@ -1,14 +1,14 @@
 #include "Player.h"
 #include "./Files_Patrick_old/GameSetup.h"
+#include <string>
 #include <iostream>
 
 namespace pi_game
-{
-	
-	Player::Player(std::string name)
+{	
+	Player::Player(std::string name) : name_{ name }, won_rounds_{ 0 }
 	{
-		name_ = name;
-		won_rounds_ = 0;
+		Game_setup user_handling;
+		user_handling.add_user(name_);	//Note for me: error handling should be implemented
 	}
 
 	Player Player::create_player() 
