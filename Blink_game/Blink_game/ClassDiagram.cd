@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="reaction_game::Pin_config">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAARAAAIAIAEABAAAAEAQEqAAIAAAAQA=</HashCode>
+      <FileName>PinConfig.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="reaction_game::Reaction_game">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAACAAAABBEBAAIAAJAFAiAGAAAAAggAAAAAAIQg=</HashCode>
+      <FileName>ReactionGame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="reaction_game::Player">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Typedef Name="reaction_game::Player::Time_point" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Player.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ABAGAACAAAAAAAAAAAAAAAAAAACEEAAAAACAAQAAIAA=</HashCode>
+      <FileName>Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pi_io::Pi_digital_output">
+    <Position X="6" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAgAAAAAAQ=</HashCode>
+      <FileName>PiDigitalOutput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pi_io::Pi_io_manager">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="pi_io::Pi_io_manager::Number_scheme" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PiIoManager.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAQADIAiBAAAQAAACAIAAAIFAgJhAAAAKAYgBAAAAIA=</HashCode>
+      <FileName>PiIoManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pi_io::Pi_digital_input">
+    <Position X="4.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAACAAAAAAAABAAAAQAAAgAAAAAAA=</HashCode>
+      <FileName>PiDigitalInput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="pi_io::Pin_handle">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAAAAAAAACAAAgAAAAAAAAAABAAAAAAAAgAAAAQAA=</HashCode>
+      <FileName>PinHandle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="pi_io::Pin" Collapsed="true">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAEAAAoFQQAAAgAgUIAAAAAQIEAAAAAIKAAAAAAgP8=</HashCode>
+      <FileName>Pin.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="pi_io::State">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="pi_io::Mode">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIEAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="pi_io::Edge_type">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQgAAAAAAAIAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Enums.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="pi_io::Pull_up_down">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Enums.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

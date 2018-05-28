@@ -36,7 +36,7 @@ void Win_pi_emulator::set_state(int pin, bool state)
 
 bool Win_pi_emulator::get_state(int pin)
 {
-	for (int idx = 0; idx < inputs_.size(); idx++)
+	for (unsigned int idx = 0; idx < inputs_.size(); idx++)
 	{
 		if (pin == inputs_[idx]) {
 			return GetAsyncKeyState(VK_F1 + idx) != 0;
@@ -52,9 +52,9 @@ bool Win_pi_emulator::get_state(int pin)
 
 void Win_pi_emulator::subscribe_falling(int pin, void(* callback)())
 {
-	for (int idx = 0; idx < inputs_.size(); idx++)
+	for (int input : inputs_)
 	{
-		if (pin == inputs_[idx]) {
+		if (pin == input) {
 			falling_callbacks_[pin] = callback;
 			return;
 		}
@@ -65,9 +65,9 @@ void Win_pi_emulator::subscribe_falling(int pin, void(* callback)())
 
 void Win_pi_emulator::subscribe_rising(int pin, void(* callback)())
 {
-	for (int idx = 0; idx < inputs_.size(); idx++)
+	for (int input : inputs_)
 	{
-		if (pin == inputs_[idx]) {
+		if (pin == input) {
 			rising_callbacks_[pin] = callback;
 			return;
 		}

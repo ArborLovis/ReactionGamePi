@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlinkLin", "BlinkLinWin.vcxproj", "{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlinkWin", "BlinkWin\BlinkWin.vcxproj", "{6630F123-3605-436B-9117-62F51A8F8898}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Debug|ARM.Build.0 = Debug|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Debug|x64.ActiveCfg = Debug|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Debug|x86.ActiveCfg = Debug|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Release|ARM.ActiveCfg = Release|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Release|ARM.Build.0 = Release|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Release|x64.ActiveCfg = Release|ARM
+		{63BC0BA2-1BDE-4DF1-AFAF-5F7FBC1178E1}.Release|x86.ActiveCfg = Release|ARM
+		{6630F123-3605-436B-9117-62F51A8F8898}.Debug|ARM.ActiveCfg = Debug|Win32
+		{6630F123-3605-436B-9117-62F51A8F8898}.Debug|x64.ActiveCfg = Debug|x64
+		{6630F123-3605-436B-9117-62F51A8F8898}.Debug|x64.Build.0 = Debug|x64
+		{6630F123-3605-436B-9117-62F51A8F8898}.Debug|x86.ActiveCfg = Debug|Win32
+		{6630F123-3605-436B-9117-62F51A8F8898}.Debug|x86.Build.0 = Debug|Win32
+		{6630F123-3605-436B-9117-62F51A8F8898}.Release|ARM.ActiveCfg = Release|Win32
+		{6630F123-3605-436B-9117-62F51A8F8898}.Release|x64.ActiveCfg = Release|x64
+		{6630F123-3605-436B-9117-62F51A8F8898}.Release|x64.Build.0 = Release|x64
+		{6630F123-3605-436B-9117-62F51A8F8898}.Release|x86.ActiveCfg = Release|Win32
+		{6630F123-3605-436B-9117-62F51A8F8898}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7001C1A3-D07B-4FE4-B935-7069C9BFA823}
+	EndGlobalSection
+EndGlobal
