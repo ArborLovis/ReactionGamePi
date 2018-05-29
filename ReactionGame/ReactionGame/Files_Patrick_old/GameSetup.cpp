@@ -159,7 +159,7 @@ bool Game_setup::check_user_exists(std::string name) const
 
 void Game_setup::print_database_cli() const
 {
-	std::cout << std::endl << "+++ Statistic begins +++" << std::endl;
+	//std::cout << std::endl << "+++ Statistic begins +++" << std::endl;
 	for(auto& it: user_database_)
 	{
 		std::cout << it << std::endl;

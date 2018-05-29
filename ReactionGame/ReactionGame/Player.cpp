@@ -82,7 +82,7 @@ namespace pi_game
 		}
 		read_name.add_user(name);
 
-		std::cout << "Here is a player created." << std::endl;
+		//std::cout << "Here is a player created." << std::endl;
 		Player p{ name };
 		return p;
 	}

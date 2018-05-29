@@ -67,24 +67,9 @@ int main()
 		//
 		Game_setup reaction_setup;
 
-		reaction_setup.print_setup_mask();
-		{
-			{
-				pi_game::Player p_1 = pi_game::Player::create_player();
-				reaction_setup.print_database_cli();
-				pi_game::Player p_2 = pi_game::Player::create_player();
-				reaction_setup.print_database_cli();
-			}
-			pi_game::Player p_3 = pi_game::Player::create_player();
-			reaction_setup.print_database_cli();
-			pi_game::Player p_4 = pi_game::Player::create_player();
-			reaction_setup.print_database_cli();
-		}
 		pi_game::Player p1 = pi_game::Player::create_player();
 		reaction_setup.print_database_cli();
 		pi_game::Player p2 = pi_game::Player::create_player();
-		reaction_setup.print_database_cli();
-
 		reaction_setup.print_database_cli();
 
 		// setup Reaction Game
