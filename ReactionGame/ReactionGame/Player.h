@@ -8,6 +8,11 @@ namespace pi_game
 	{
 		public:
 		Player(std::string name);
+		Player(const Player &old_obj);		//cpy-constr
+		Player& operator=(const Player& other);
+		Player(Player&& other) noexcept;
+		Player& operator=(Player&& rhs) noexcept;
+
 		static Player create_player();
 		std::string get_username() const;
 
@@ -18,5 +23,7 @@ namespace pi_game
 	private:
 		std::string name_;
 		unsigned int won_rounds_;
+
+		static std::string default_name_;
 	};
 }

@@ -52,9 +52,9 @@ int main()
 
 		// setup Input Button	
 		//
-		const Digital_input_pi btn_player_1{ map_pin_numbers(j_object["p1_button"].get<int>()), 
+		const Digital_input_pi btn_player_1{ map_pin_numbers(j_object["p1_button"].get<int>()),
 			Pull_up_down::up, Edge_type::falling, &isr_button_player_1 };
-		const Digital_input_pi btn_player_2{ map_pin_numbers(j_object["p2_button"].get<int>()), 
+		const Digital_input_pi btn_player_2{ map_pin_numbers(j_object["p2_button"].get<int>()),
 			Pull_up_down::up, Edge_type::falling, &isr_button_player_2 };
 
 		// setup Output LED's
@@ -62,13 +62,24 @@ int main()
 		const Digital_output_pi led_player_1{ map_pin_numbers(j_object["p1_led"].get<int>()), Mode::out };
 		const Digital_output_pi led_player_2{ map_pin_numbers(j_object["p2_led"].get<int>()), Mode::out };
 		const Digital_output_pi led_status{ map_pin_numbers(j_object["state"].get<int>()), Mode::out };
-	
+
 		// Game setup - read usernames and number of plays from the CLI
 		//
 		Game_setup reaction_setup;
 
 		reaction_setup.print_setup_mask();
-
+		{
+			{
+				pi_game::Player p_1 = pi_game::Player::create_player();
+				reaction_setup.print_database_cli();
+				pi_game::Player p_2 = pi_game::Player::create_player();
+				reaction_setup.print_database_cli();
+			}
+			pi_game::Player p_3 = pi_game::Player::create_player();
+			reaction_setup.print_database_cli();
+			pi_game::Player p_4 = pi_game::Player::create_player();
+			reaction_setup.print_database_cli();
+		}
 		pi_game::Player p1 = pi_game::Player::create_player();
 		reaction_setup.print_database_cli();
 		pi_game::Player p2 = pi_game::Player::create_player();

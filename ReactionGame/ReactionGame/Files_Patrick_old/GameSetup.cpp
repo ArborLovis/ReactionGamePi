@@ -137,7 +137,8 @@ void Game_setup::delete_user(std::string const name)
 		}
 		cnt++;
 	}
-	user_database_.pop_back();	//delete last element
+	if(!user_database_.empty())
+		user_database_.pop_back();	//delete last element
 }
 
 bool Game_setup::check_user_exists(std::string name) const
@@ -148,7 +149,7 @@ bool Game_setup::check_user_exists(std::string name) const
 		{
 			if(it == name)
 			{
-				std::cout << "User allready exists!" << std::endl;
+				//std::cout << "User allready exists!" << std::endl;
 				return false;
 			}
 		}
@@ -158,7 +159,7 @@ bool Game_setup::check_user_exists(std::string name) const
 
 void Game_setup::print_database_cli() const
 {
-	std::cout << std::endl;
+	std::cout << std::endl << "+++ Statistic begins +++" << std::endl;
 	for(auto& it: user_database_)
 	{
 		std::cout << it << std::endl;
