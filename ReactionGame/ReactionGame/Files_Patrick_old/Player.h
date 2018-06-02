@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pi_gpio_headers.h"
-#include <wiringPi.h>
+#include "piproxy.h"
 #include <string>
 
 class Player

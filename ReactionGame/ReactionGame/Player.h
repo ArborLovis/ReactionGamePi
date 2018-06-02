@@ -13,12 +13,9 @@ namespace pi_game
 		Player(Player&& other) noexcept;
 		Player& operator=(Player&& rhs) noexcept;
 
-		static Player create_player();
 		std::string get_username() const;
-
 		void set_won_rounds_plus_one();
 		unsigned int get_won_rounds() const;
-		~Player();
 
 	private:
 		std::string name_;

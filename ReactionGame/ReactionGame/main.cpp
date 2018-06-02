@@ -67,9 +67,9 @@ int main()
 		//
 		Game_setup reaction_setup;
 
-		pi_game::Player p1 = pi_game::Player::create_player();
+		pi_game::Player p1 = reaction_setup.create_player();
 		reaction_setup.print_database_cli();
-		pi_game::Player p2 = pi_game::Player::create_player();
+		pi_game::Player p2 = reaction_setup.create_player();
 		reaction_setup.print_database_cli();
 
 		// setup Reaction Game

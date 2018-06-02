@@ -2,12 +2,10 @@
 #include "../piproxy.h"
 
 #include <sstream>
-#include <limits>
 #include <iostream>
 #include "../Player.h"
 
 std::string Game_setup::default_name_ = "undefined";
-std::vector<std::string> Game_setup::user_database_;
 
 Game_setup::Game_setup() : username_{ default_name_ }
 {}
@@ -155,6 +153,22 @@ bool Game_setup::check_user_exists(std::string name) const
 		}
 	}
 	return true;
+}
+
+pi_game::Player Game_setup::create_player()
+{
+	std::cout << std::endl << "create player called" << std::endl;
+
+	std::string name = read_usernames_CLI();
+
+	while (!check_user_exists(name))
+	{
+		name = read_usernames_CLI();
+	}
+	add_user(name);
+
+	//std::cout << "Here is a player created." << std::endl;
+	return pi_game::Player { name };
 }
 
 void Game_setup::print_database_cli() const

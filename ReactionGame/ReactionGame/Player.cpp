@@ -10,15 +10,6 @@ namespace pi_game
 
 	Player::Player(std::string name) : name_{std::move(name)}, won_rounds_{ 0 }
 	{
-		Game_setup user_handling;
-		if(user_handling.check_user_exists(name_))		//true, if user doesn't exist
-		{
-			throw std::logic_error("user has been created without registration");
-			//if user doesn't exist --> create_player function was not called
-		}
-
-		//user_handling.add_user(name_);	//Note for me: error handling should be implemented
-		std::cout << std::endl << "Player: constr. called" << std::endl;
 	}
 
 	Player::Player(const Player & old_obj)
@@ -69,24 +60,6 @@ namespace pi_game
 		return *this;
 	}
 
-	Player Player::create_player() 
-	{
-		std::cout << std::endl << "create player called" << std::endl;
-
-		Game_setup read_name;
-		std::string name = read_name.read_usernames_CLI();
-		
-		while (!read_name.check_user_exists(name))
-		{
-			name = read_name.read_usernames_CLI();
-		}
-		read_name.add_user(name);
-
-		//std::cout << "Here is a player created." << std::endl;
-		Player p{ name };
-		return p;
-	}
-
 	std::string Player::get_username() const
 	{
 		return name_;
@@ -101,10 +74,5 @@ namespace pi_game
 	unsigned int Player::get_won_rounds() const
 	{
 		return won_rounds_;
-	}
-
-	Player::~Player()
-	{
-		Game_setup::delete_user(name_);
 	}
 }
